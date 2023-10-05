@@ -36,7 +36,14 @@ const Topbar = () => {
       <header className="App-header">
         {isAuthenticated && <h3>Hello {user.name} </h3>}
         { isAuthenticated ? (<button type="button" class="btn btn-info" id="logout-button" onClick={(e) => logout() }>Logout</button>) : (
-          <button type="button" class="btn btn-info" onClick={(e) => loginWithRedirect() }>Login / Signup </button>
+          <button type="button" class="btn btn-info" onClick={(e) => loginWithRedirect() }>Login as Admin</button>
+        )
+        }
+      </header>
+      <header className="App-header">
+        {isAuthenticated && <h3>Hello {user.name} </h3>}
+        { isAuthenticated ? (<button type="button" class="btn btn-info" id="logout-button" onClick={(e) => logout() }>Logout</button>) : (
+          <button type="button" class="btn btn-info" onClick={(e) => loginWithRedirect() }>Login as Employee </button>
         )
         }
       </header>

@@ -3,80 +3,96 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataInvoices } from "../../data/mockData";
 import Header from "../../components/Header";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { ErrorResponse } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+
+
 
 const Invoices = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const columns = [
-    { field: "id", headerName: "ID" },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "cost",
-      headerName: "Cost",
-      flex: 1,
-      renderCell: (params) => (
-        <Typography color={colors.greenAccent[500]}>
-          ${params.row.cost}
-        </Typography>
-      ),
-    },
-    {
-      field: "date",
-      headerName: "Date",
-      flex: 1,
-    },
-  ];
+  const options = [
 
+    { label: 'Travel', value: 'Travel' },
+ 
+    { label: 'Accomodation', value: 'Accomodation' },
+ 
+    { label: 'Food', value: 'Food' },
+ 
+  ];
+ 
+  const [value, setValue] = React.useState('fruit');
+ 
+  const handleChange = (event) => {
+ 
+    setValue(event.target.value);
+ 
+  };
   return (
-    <Box m="20px">
-      <Header title="INVOICES" subtitle="List of Invoice Balances" />
-      <Box
-        m="40px 0 0 0"
-        height="75vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-        }}
-      >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
-      </Box>
-    </Box>
+  
+  <>
+  {/* <Box style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+      }}>
+      <Header
+        title="ADD EXPENSES"
+        subtitle="  Submit your expenses" /></Box>
+
+<Header
+        title="ADD EXPENSES"
+        subtitle="  Submit your expenses" /> */}
+{/* 
+<div>
+
+<select>
+
+  <option value="fruit">Fruit</option>
+
+  <option value="vegetable">Vegetable</option>
+
+  <option value="meat">Meat</option>
+
+</select>
+
+</div> */}
+
+<div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+      }}>
+
+<label>TYPE OF EXPENSE</label>
+
+<select value={value} onChange={handleChange}>
+
+  {options.map((option) => (
+
+    <option value={option.value}>{option.label}</option>
+
+  ))}
+
+</select>
+
+
+
+<p>You are submitting {value} request</p>
+
+</div>
+
+<Stack direction="row" spacing={2}>
+      <Button variant="contained" color="success" >
+        Success
+      </Button>
+    </Stack>
+    
+  </>
   );
 };
 
